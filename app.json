@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "valorant-app",
+    "slug": "valorant-app",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
