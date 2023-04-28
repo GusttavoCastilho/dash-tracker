@@ -1,1 +1,1 @@
-export * from "./get-by-puuid";
+export * from "./remote-get-by-puuid";
