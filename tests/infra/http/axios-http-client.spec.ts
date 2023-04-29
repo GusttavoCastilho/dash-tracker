@@ -1,6 +1,6 @@
 import { AxiosHttpClient } from "@infra/http";
 import { mockHttpRequest } from "@tests/data/mocks";
-import { mockAxios } from "@tests/infra/mock";
+import { mockAxios, mockHttpResponse } from "@tests/infra/mock";
 
 import axios from "axios";
 
@@ -46,5 +46,16 @@ describe("AxiosHttpClient", () => {
       statusCode: axiosResponse.status,
       data: axiosResponse.data,
     });
+  });
+
+  it("Should return correct error", () => {
+    const { sut, mockedAxios } = makeSut();
+
+    mockedAxios.request.mockRejectedValueOnce({
+      response: mockHttpResponse(),
+    });
+
+    const promise = sut.request(mockHttpRequest());
+    expect(promise).toEqual(mockedAxios.request.mock.results[0].value);
   });
 });
