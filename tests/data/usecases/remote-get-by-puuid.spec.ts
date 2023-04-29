@@ -7,7 +7,7 @@ import faker from "faker";
 
 type SutTypes = {
   sut: RemoteGetByPuuid;
-  httpClientSpy: HttpClientSpy;
+  httpClientSpy: HttpClientSpy<RemoteGetByPuuid.Model>;
 };
 
 const makeSut = (url = faker.internet.url()): SutTypes => {
