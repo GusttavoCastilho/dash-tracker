@@ -1,4 +1,5 @@
-import { HttpClient } from "@data/protocols/http";
+import { HttpClient, HttpStatusCode } from "@data/protocols/http";
+import { InvalidCredentialsError } from "@domain/errors/invalid-credentials-error";
 
 export class RemoteGetByPuuid {
   constructor(
@@ -7,6 +8,16 @@ export class RemoteGetByPuuid {
   ) {}
 
   async getPuuid(): Promise<void> {
-    await this.httpClient.request({ method: "get", url: this.url });
+    const httpResponse = await this.httpClient.request({
+      method: "get",
+      url: this.url,
+    });
+
+    switch (httpResponse.statusCode) {
+      case HttpStatusCode.unauthorized:
+        throw new InvalidCredentialsError();
+      default:
+        return Promise.resolve();
+    }
   }
 }
