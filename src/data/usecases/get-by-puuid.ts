@@ -1,5 +1,5 @@
 import { HttpClient, HttpStatusCode } from "@data/protocols/http";
-import { InvalidCredentialsError } from "@domain/errors/invalid-credentials-error";
+import { InvalidCredentialsError, UnexpectedError } from "@domain/errors";
 
 export class RemoteGetByPuuid {
   constructor(
@@ -14,10 +14,12 @@ export class RemoteGetByPuuid {
     });
 
     switch (httpResponse.statusCode) {
+      case HttpStatusCode.ok:
+        return httpResponse.data;
       case HttpStatusCode.unauthorized:
         throw new InvalidCredentialsError();
       default:
-        return Promise.resolve();
+        throw new UnexpectedError();
     }
   }
 }
