@@ -12,6 +12,7 @@ module.exports = function(api) {
             "@data": "./src/data",
             "@domain": "./src/domain",
             "@infra": "./src/infra",
+            "@main": "./src/main",
             "@tests": "./tests"
           }
         }
