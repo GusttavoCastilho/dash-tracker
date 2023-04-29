@@ -1,4 +1,4 @@
-import { HttpClient } from "../protocols/http";
+import { HttpClient } from "@data/protocols/http";
 
 export class RemoteGetByPuuid {
   constructor(

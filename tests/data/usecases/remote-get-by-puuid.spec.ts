@@ -1,6 +1,7 @@
-import { RemoteGetByPuuid } from "../../../src/data/usecases/get-by-puuid";
-import { HttpClientSpy } from "../mocks/mock-http";
-import faker from 'faker';
+import { RemoteGetByPuuid } from "@data/usecases";
+import { HttpClientSpy } from "@tests/data/mocks";
+
+import faker from "faker";
 
 type SutTypes = {
   sut: RemoteGetByPuuid;
