@@ -2,6 +2,7 @@ import { RemoteGetByPuuid } from "@data/usecases";
 import { HttpStatusCode } from "@data/protocols/http";
 import { InvalidCredentialsError, UnexpectedError } from "@domain/errors";
 import { HttpClientSpy } from "@tests/data/mocks";
+import { mockAccountModel } from "@tests/domain/mocks";
 
 import faker from "faker";
 
@@ -27,6 +28,19 @@ describe("RemoteGetByPuuid", () => {
 
     await sut.getPuuid();
     expect(httpClientSpy.url).toBe(url);
+  });
+
+  it("Should return an AccountModel if HttpClient returns 200", async () => {
+    const { sut, httpClientSpy } = makeSut();
+    const httpResult = mockAccountModel();
+
+    httpClientSpy.response = {
+      statusCode: HttpStatusCode.ok,
+      data: httpResult,
+    };
+
+    const account = await sut.getPuuid();
+    expect(account).toEqual(httpResult);
   });
 
   it("Should throw UnexpectedError if HttpClient returns 400", async () => {
