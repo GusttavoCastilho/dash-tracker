@@ -1,4 +1,6 @@
 import { RemoteGetByPuuid } from "@data/usecases";
+import { HttpStatusCode } from "@data/protocols/http";
+import { InvalidCredentialsError } from "@domain/errors/invalid-credentials-error";
 import { HttpClientSpy } from "@tests/data/mocks";
 
 import faker from "faker";
@@ -25,5 +27,16 @@ describe("RemoteGetByPuuid", () => {
 
     await sut.getPuuid();
     expect(httpClientSpy.url).toBe(url);
+  });
+
+  it("Should throw InvalidCredentialsError if HttpClient returns 401", async () => {
+    const { sut, httpClientSpy } = makeSut();
+
+    httpClientSpy.response = {
+      statusCode: HttpStatusCode.unauthorized,
+    };
+
+    const promise = sut.getPuuid();
+    await expect(promise).rejects.toThrow(new InvalidCredentialsError());
   });
 });
