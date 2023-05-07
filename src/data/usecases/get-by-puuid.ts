@@ -8,7 +8,7 @@ export class RemoteGetByPuuid implements GetByPuuid {
     private readonly httpClient: HttpClient<RemoteGetByPuuid.Model>
   ) {}
 
-  async getPuuid(): Promise<GetByPuuid.Model> {
+  async execute(): Promise<GetByPuuid.Model> {
     const httpResponse = await this.httpClient.request({
       method: "get",
       url: this.url,
