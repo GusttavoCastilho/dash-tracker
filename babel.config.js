@@ -1,12 +1,17 @@
-module.exports = function(api) {
+module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ['module:metro-react-native-babel-preset'],
+    presets: ["module:metro-react-native-babel-preset"],
     plugins: [
+      ["babel-plugin-root-import", { rootPathSuffix: "src" }],
+      ["@babel/plugin-proposal-decorators", { legacy: true }],
+      ["@babel/plugin-proposal-private-methods"],
+      ["@babel/plugin-proposal-class-properties"],
+      ["@babel/plugin-transform-modules-commonjs"],
       [
-        'module-resolver',
+        "module-resolver",
         {
-          root: ['.'],
+          root: ["."],
           alias: {
             "@src": "./src",
             "@data": "./src/data",
@@ -14,10 +19,11 @@ module.exports = function(api) {
             "@infra": "./src/infra",
             "@main": "./src/main",
             "@presentation": "./src/presentation",
-            "@tests": "./tests"
-          }
-        }
-      ]
-    ]
+            "@tests": "./tests",
+          },
+        },
+      ],
+      ["@babel/plugin-transform-runtime"],
+    ],
   };
 };
