@@ -24,6 +24,13 @@ module.exports = function (api) {
         },
       ],
       ["@babel/plugin-transform-runtime"],
+      [
+        "module:react-native-dotenv",
+        {
+          moduleName: "@env",
+          path: ".env",
+        },
+      ],
     ],
   };
 };

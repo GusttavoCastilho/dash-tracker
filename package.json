@@ -20,6 +20,7 @@
     "jest-expo": "^48.0.2",
     "react": "18.2.0",
     "react-native": "0.71.6",
+    "react-native-dotenv": "^3.4.8",
     "react-native-svg": "13.4.0",
     "styled-components": "^5.3.10",
     "typescript": "^4.9.4"
@@ -35,6 +36,7 @@
     "@types/axios": "^0.14.0",
     "@types/faker": "^4.1.11",
     "@types/jest": "^29.5.1",
+    "@types/react-native-dotenv": "^0.2.0",
     "babel-jest": "^29.5.0",
     "babel-plugin-module-resolver": "^5.0.0",
     "babel-plugin-root-import": "^6.6.0",
@@ -53,7 +55,9 @@
     "moduleNameMapper": {
       "\\.svg": "<rootDir>/tests/presentation/mocks/svg.ts"
     },
-    "setupFiles": ["<rootDir>/jest.setup.js"],
+    "setupFiles": [
+      "<rootDir>/jest.setup.js"
+    ],
     "collectCoverage": true,
     "collectCoverageFrom": [
       "**/*.{js,jsx,ts,tsx}",

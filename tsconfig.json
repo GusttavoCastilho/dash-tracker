@@ -8,8 +8,9 @@
       "@infra/*": ["src/infra/*"],
       "@main/*": ["src/main/*"],
       "@presentation/*": ["src/presentation/*"],
-      "@tests/*": ["tests/*"],
-    }
+      "@tests/*": ["tests/*"]
+    },
+    "typeRoots": ["src/presentation/@types/env"]
   },
   "extends": "expo/tsconfig.base"
 }
