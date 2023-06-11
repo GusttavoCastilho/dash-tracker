@@ -5,8 +5,6 @@ module.exports = function (api) {
     plugins: [
       ["babel-plugin-root-import", { rootPathSuffix: "src" }],
       ["@babel/plugin-proposal-decorators", { legacy: true }],
-      ["@babel/plugin-proposal-private-methods"],
-      ["@babel/plugin-proposal-class-properties"],
       ["@babel/plugin-transform-modules-commonjs"],
       [
         "module-resolver",
