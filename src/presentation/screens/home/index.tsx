@@ -2,17 +2,17 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 
 import { HeaderSearch } from "@presentation/components";
-import { useHomeController } from "./useHomeController";
 import { HomeView } from "./model";
 
 import * as S from "./styles";
 
-export const Home: React.FC<HomeView> = ({ puuid }) => {
-  const { gameName, setGameName, tagLine, setTagLine, handleGetPuuid } =
-    useHomeController();
-
-  handleGetPuuid(puuid);
-
+export const Home: React.FC<HomeView> = ({
+  gameName,
+  setGameName,
+  setTagLine,
+  tagLine,
+  handleSearchPlayer,
+}) => {
   return (
     <S.Wrapper>
       <StatusBar style="light" />
@@ -22,7 +22,7 @@ export const Home: React.FC<HomeView> = ({ puuid }) => {
         onChangeGameNameText={setGameName}
         tagLineValue={tagLine}
         onChangeTagLineText={setTagLine}
-        onSearchPlayer={() => {}}
+        onSearchPlayer={handleSearchPlayer}
       />
     </S.Wrapper>
   );

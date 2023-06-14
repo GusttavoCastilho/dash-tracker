@@ -1,4 +1,5 @@
 import React from "react";
+import { TouchableOpacityProps } from "react-native";
 
 import { useTheme } from "styled-components/native";
 import { AntDesign, Octicons } from "@expo/vector-icons";
@@ -13,7 +14,7 @@ type Props = {
   tagLineValue: string;
   onChangeTagLineText: (text: string) => void;
   onSearchPlayer: () => void;
-};
+} & TouchableOpacityProps;
 
 export const HeaderSearch: React.FC<Props> = ({
   gameNameValue,
@@ -21,6 +22,7 @@ export const HeaderSearch: React.FC<Props> = ({
   tagLineValue,
   onChangeTagLineText,
   onSearchPlayer,
+  ...rest
 }) => {
   const theme = useTheme();
   return (
@@ -63,7 +65,11 @@ export const HeaderSearch: React.FC<Props> = ({
           }
         />
 
-        <S.SearchButton onPress={onSearchPlayer} testID="search-button">
+        <S.SearchButton
+          onPress={onSearchPlayer}
+          testID="search-button"
+          {...rest}
+        >
           <S.TextButton>Search</S.TextButton>
         </S.SearchButton>
       </S.Content>
